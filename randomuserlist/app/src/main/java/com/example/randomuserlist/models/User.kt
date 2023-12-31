@@ -1,9 +1,8 @@
 package com.example.randomuserlist.models
 
 data class UsersResponse(
-    val results: List<User>,
+    val results: Set<User>,
 )
-
 data class User(
     val gender: String,
     val name: Name,
@@ -17,7 +16,15 @@ data class User(
     val id: ID,
     val picture: Picture,
     val nat: String
-)
+){
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || javaClass != other.javaClass) return false
+        val user = other as User
+        if (email != user.email) return false
+        return true
+    }
+}
 
 data class Name(
     val title: String,

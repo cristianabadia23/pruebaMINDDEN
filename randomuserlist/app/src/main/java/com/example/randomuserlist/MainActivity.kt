@@ -1,19 +1,14 @@
 package com.example.randomuserlist
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.randomuserlist.inferfaces.ApiServiceable
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -66,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 println("user = ${user.name.first}")
             }
         } catch (e: Exception) {
-            Toast.makeText(this@MainActivity,"Error al cargar user", Toast.LENGTH_LONG).show()
+            println(e)
         }
     }
 }

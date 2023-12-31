@@ -16,7 +16,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     private val users = mutableListOf<User>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addUsers(newUsers: List<User>) {
+    fun addUsers(newUsers: Set<User>) {
         users.addAll(newUsers)
         notifyDataSetChanged()
     }
