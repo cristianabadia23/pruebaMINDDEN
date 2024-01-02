@@ -10,10 +10,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.randomuserlist.R
 import com.example.randomuserlist.databinding.ActivityDetailUserBinding
+import com.example.randomuserlist.models.Coordinates
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class DetailUserActivity : AppCompatActivity(){//, OnMapReadyCallback {
+class DetailUserActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityDetailUserBinding
     private lateinit var userLocation:String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,5 +90,30 @@ class DetailUserActivity : AppCompatActivity(){//, OnMapReadyCallback {
             }
         }
         return true
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        val coordinates = parseCoordinates(userLocation)
+        val latitude = coordinates?.latitude?.toDouble()
+        val longitude = coordinates?.longitude?.toDouble()
+        if (latitude !=null && longitude != null){
+            val latLng = LatLng(latitude, longitude)
+            googleMap.addMarker(
+                MarkerOptions()
+                    .position(latLng)
+                    .title("Posicion del usuario")
+            )
+        }
+    }
+
+    fun parseCoordinates(input: String): Coordinates? {
+        val regex = Regex("Coordinates\\(latitude=(-?\\d+\\.\\d+), longitude=(-?\\d+\\.\\d+)\\)")
+        val matchResult = regex.find(input)
+        return if (matchResult != null) {
+            val (latitude, longitude) = matchResult.destructured
+            Coordinates(latitude, longitude)
+        } else {
+            null
+        }
     }
 }
