@@ -13,7 +13,7 @@ import com.example.randomuserlist.databinding.ActivityDetailUserBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class DetailUserActivity : AppCompatActivity(){//, OnMapReadyCallback {
+class DetailUserActivity : AppCompatActivity(){
     private lateinit var binding: ActivityDetailUserBinding
     private lateinit var userLocation:String
     override fun onCreate(savedInstanceState: Bundle?) {
