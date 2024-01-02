@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.randomuserlist.ui.DetailUserActivity">
+    <item
+        android:id="@+id/filter"
+        android:orderInCategory="100"
+        android:title="Mostrar filtros"
+        app:showAsAction="never" />
+</menu>
