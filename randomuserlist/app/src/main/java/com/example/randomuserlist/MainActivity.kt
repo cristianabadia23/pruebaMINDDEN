@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         lifecycleScope.launch {
-            val response = apiService.getUsers()
+            val response = apiService.getUserByResults(100)
             userAdapter.addUsers(response.results)
         }
 
@@ -55,11 +55,8 @@ class MainActivity : AppCompatActivity() {
 
     private suspend fun loadMoreUsers() {
         try {
-            val response = apiService.getUserbyResults(10)
+            val response = apiService.getUserByResults(100)
             userAdapter.addUsers(response.results)
-            for (user in response.results){
-                println("user = ${user.name.first}")
-            }
         } catch (e: Exception) {
             println(e)
         }

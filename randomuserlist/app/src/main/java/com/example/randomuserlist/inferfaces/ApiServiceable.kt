@@ -1,8 +1,6 @@
 package com.example.randomuserlist.inferfaces
 
 import com.example.randomuserlist.models.UsersResponse
-import kotlinx.coroutines.Deferred
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -10,9 +8,7 @@ import retrofit2.http.Query
 
 interface ApiServiceable {
     @GET("api/")
-    suspend fun getUserbyResults(@Query("results=") results: Int):UsersResponse
-    @GET("api/")
-    suspend fun getUsers():UsersResponse
+    suspend fun getUserByResults(@Query("results=") results: Int):UsersResponse
 }
 
 object RetrofitServiceFactory{
