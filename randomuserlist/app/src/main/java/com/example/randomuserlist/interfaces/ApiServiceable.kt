@@ -1,4 +1,4 @@
-package com.example.randomuserlist.inferfaces
+package com.example.randomuserlist.interfaces
 
 import com.example.randomuserlist.models.UsersResponse
 import retrofit2.Retrofit

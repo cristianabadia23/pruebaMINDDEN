@@ -3,7 +3,7 @@ package com.example.randomuserlist.models
 import com.google.gson.annotations.SerializedName
 
 data class UsersResponse(
-    @SerializedName("results")  val results: Set<User>,
+    @SerializedName("results") val results: Set<User>,
 ){
     override fun hashCode(): Int {
         return super.hashCode()

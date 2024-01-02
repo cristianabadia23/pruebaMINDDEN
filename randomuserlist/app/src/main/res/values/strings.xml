@@ -91,4 +91,18 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="elevated_title">Elevated Title</string>
+    <string name="contactos">Contactos</string>
+    <string name="por_nombre">Por nombre</string>
+    <string name="por_email">Por email</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="nombre_y_apellidos">Nombre y Apellidos</string>
+    <string name="email">Email</string>
+    <string name="g_nero">Género</string>
+    <string name="fecha_de_registro">Fecha de registro</string>
+    <string name="t_lefono">Télefono</string>
+    <string name="direcci_n">Dirección</string>
+    <string name="eliminar_usuario">Eliminar usuario</string>
+    <string name="cerrar_sesion">Cerrar sesion</string>
+    <string name="compartir">Compartir</string>
 </resources>
