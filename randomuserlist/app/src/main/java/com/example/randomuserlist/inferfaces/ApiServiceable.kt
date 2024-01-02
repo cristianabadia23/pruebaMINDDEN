@@ -8,7 +8,8 @@ import retrofit2.http.Query
 
 interface ApiServiceable {
     @GET("api/")
-    suspend fun getUserByResults(@Query("results=") results: Int):UsersResponse
+    suspend fun getUserByResults(@Query("page=") page:Int,
+                                 @Query("results=") results: Int):UsersResponse
 }
 
 object RetrofitServiceFactory{

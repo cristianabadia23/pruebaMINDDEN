@@ -1,8 +1,14 @@
 package com.example.randomuserlist.models
 
+import com.google.gson.annotations.SerializedName
+
 data class UsersResponse(
-    val results: Set<User>,
-)
+    @SerializedName("results")  val results: Set<User>,
+){
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
+}
 data class User(
     val gender: String,
     val name: Name,
@@ -23,6 +29,10 @@ data class User(
         val user = other as User
         if (email != user.email) return false
         return true
+    }
+
+    override fun hashCode(): Int {
+        return super.hashCode()
     }
 }
 

@@ -1,31 +1,25 @@
 package com.example.randomuserlist
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.randomuserlist.inferfaces.ApiServiceable
+import com.example.randomuserlist.inferfaces.RetrofitServiceFactory
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    private val apiService = Retrofit.Builder()
-        .baseUrl("https://randomuser.me/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(ApiServiceable::class.java)
+    private val apiService = RetrofitServiceFactory.makeRetrofitService()
 
     private val userAdapter = UserAdapter()
-
+    private var page = 1
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        lifecycleScope.launch {
-            val response = apiService.getUserByResults(100)
-            userAdapter.addUsers(response.results)
-        }
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,13 +32,17 @@ class MainActivity : AppCompatActivity() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+                val visibleItemCount = layoutManager.childCount
+                val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
                 val totalItemCount = layoutManager.itemCount
 
-                if (lastVisibleItemPosition + 1 == totalItemCount) {
+                if (visibleItemCount + pastVisibleItems >= totalItemCount ) {
+                    page++
                     lifecycleScope.launch {
                         loadMoreUsers()
                     }
+
+
                 }
             }
         })
@@ -55,10 +53,10 @@ class MainActivity : AppCompatActivity() {
 
     private suspend fun loadMoreUsers() {
         try {
-            val response = apiService.getUserByResults(100)
+            val response = apiService.getUserByResults(page = page, results = 10)
             userAdapter.addUsers(response.results)
         } catch (e: Exception) {
-            println(e)
+            println("loadMoreUsers Error ${e}")
         }
     }
 }
