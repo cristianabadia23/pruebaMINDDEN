@@ -9,6 +9,7 @@ data class UsersResponse(
         return super.hashCode()
     }
 }
+
 data class User(
     val gender: String,
     val name: Name,
@@ -35,7 +36,6 @@ data class User(
         return super.hashCode()
     }
 }
-
 data class Name(
     val title: String,
     val first: String,

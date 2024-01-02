@@ -1,6 +1,7 @@
 package com.example.randomuserlist
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.randomuserlist.models.User
+import android.content.Context
 
-class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
-
+class UserAdapter(context:Context) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     private val users = mutableListOf<User>()
-
+    private val context = context
     @SuppressLint("NotifyDataSetChanged")
     fun addUsers(newUsers: Set<User>) {
         users.addAll(newUsers)
@@ -38,7 +39,7 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
             .load(user.picture.thumbnail)
             .transform(CircleCrop())
             .into(holder.userImageView)
-
+        
     }
 
     override fun getItemCount() = users.size

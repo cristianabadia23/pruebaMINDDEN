@@ -1,5 +1,6 @@
 package com.example.randomuserlist
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private val apiService = RetrofitServiceFactory.makeRetrofitService()
 
-    private val userAdapter = UserAdapter()
+    private val userAdapter = UserAdapter(this)
     private var page = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.userRecycler.layoutManager = LinearLayoutManager(this)
         binding.userRecycler.adapter = userAdapter
+
 
         binding.userRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
